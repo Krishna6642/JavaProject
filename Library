@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Food {
+    private String name;
+    private String price;
+    private List<Food> list;
+
+    public Food(String name, String price) {
+        this.name = name;
+        this.price = price;
+        this.list = new ArrayList<>();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void addFood(String name, String price) {
+        for (Food food : list) {
+            if (food.getName().equals(name)) { // Use equals() for string comparison
+                return; // Food already exists, do not add
+            }
+        }
+        list.add(new Food(name, price)); // Create a new Food object and add it to the list
+    }
+
+    public void displayFoodItems() { // Renamed method for clarity
+        for (Food food : list) {
+            System.out.println(food.getName() + " " + food.getPrice());
+        }
+    }
+}
+
+public class FoodManagement { // Fixed class name spelling
+    public static void main(String[] args) { // Added main method
+        Food foodManager = new Food("DalBhaji", "70");
+        foodManager.addFood("Besan", "10");
+        foodManager.displayFoodItems(); // Call the display method
+    }
+}
