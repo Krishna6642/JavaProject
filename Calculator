@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class Calc {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double sum = 0; // Sum initialize karte hain
+        System.out.println("Enter 'C' to Continue & 'B' to Break");
+
+        while (true) {
+            String command = scanner.next(); // Command ko input lete hain
+            
+            if (command.equalsIgnoreCase("B")) {
+                break; // Loop ko break karte hain agar user 'B' enter kare
+            } else if (command.equalsIgnoreCase("C")) {
+                System.out.print("Enter number: ");
+                double num = scanner.nextDouble(); // Number input lete hain
+                System.out.print("Enter operation (+, -, *, /): ");
+                char op = scanner.next().charAt(0); // Operation input lete hain
+                
+                switch (op) {
+                    case '+':
+                        sum += num;
+                        break;
+                    case '-':
+                        sum -= num;
+                        break;
+                    case '*':
+                        sum *= num; // Make sure to initialize `sum` properly before multiplication
+                        break;
+                    case '/':
+                        if (num != 0) {
+                            sum /= num; // Division by zero check
+                        } else {
+                            System.out.println("Error: Division by zero");
+                        }
+                        break;
+                    default:
+                        System.out.println("Invalid operation");
+                }
+                System.out.println("Current sum: " + sum); // Current sum print karte hain
+            } else {
+                System.out.println("Invalid command. Please enter 'C' to continue or 'B' to break.");
+            }
+        }
+
+        System.out.println("Final sum: " + sum); // Final sum print karte hain
+        scanner.close(); // Scanner ko close karte hain
+    }
+}
