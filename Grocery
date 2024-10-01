@@ -1,0 +1,75 @@
+import java.util.ArrayList;
+import java.util.List;
+
+class Grocery {
+    private int id;
+    private String name;
+    private double price;
+    private static List<String> list = new ArrayList<>();  // Made list static to track all items globally
+    private static int count = 0;  // Static counter to track total items
+    private static double sum = 0; // Static sum to track total price
+
+    // Constructor to initialize id, name, and price
+    public Grocery(int id, String name, double price) {
+        this.id = id;
+        this.price = price;
+        this.name = name;
+    }
+
+    // Getters for id and name
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    // Method to buy an item
+    public void buy() {
+        if (count < 7) {  // Limiting to 7 purchases (1 week)
+            list.add(name);  // Add only the name to the list
+            sum += price;    // Add the price to the total sum
+            count++;         // Increase the count
+        } else {
+            System.out.println("Purchase limit reached for the week.");
+        }
+    }
+
+    // Method to display the purchased items and total cost
+    public static void showPurchasedItems() {
+        System.out.println("Items purchased: " + list);
+        System.out.println("Total amount spent: $" + sum);
+    }
+}
+
+public class GroceryMain {
+    public static void main(String[] args) {
+        Grocery g1 = new Grocery(1, "Fair&Lovely", 50);
+        g1.buy();
+
+        Grocery g2 = new Grocery(2, "Sugar", 30);
+        g2.buy();
+
+        Grocery g3 = new Grocery(3, "Salt", 10);
+        g3.buy();
+
+        Grocery g4 = new Grocery(4, "Milk", 40);
+        g4.buy();
+
+        Grocery g5 = new Grocery(5, "Eggs", 60);
+        g5.buy();
+
+        Grocery g6 = new Grocery(6, "Bread", 20);
+        g6.buy();
+
+        Grocery g7 = new Grocery(7, "Butter", 80);
+        g7.buy();
+
+        Grocery g8 = new Grocery(8, "Juice", 100);  // This one should not be allowed (limit reached)
+        g8.buy();
+
+        // Show purchased items and total price
+        Grocery.showPurchasedItems();
+    }
+}
